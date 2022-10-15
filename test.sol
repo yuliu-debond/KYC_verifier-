@@ -19,8 +19,8 @@ interface IERC6595 {
      * @dev structure that defines the parameters for specific issuance of bonds and amount which are to be transferred/issued/given allowance, etc.
      * @notice this structure is used for the verification process, it chontains the metadataID, logic, expectation
      * @metadataID is the ID of the metadatas need to be verified
-     * @logics given here MUST be either ("<", "<=", "=", ">=", ">")
-     * @expectation is the value that is expected to be ("<", "<=", "=", ">=", ">") than (to) the metadata value of the verifying
+     * @logic given here MUST be either ("<", "<=", "=", ">=", ">")
+     * @expectation MUST be the value that is expected to be ("<", "<=", "=", ">=", ">") than (to) the metadata value of the verifying
      */
 
     struct Verification {
