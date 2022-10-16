@@ -17,24 +17,19 @@ interface IERC6595 {
         address addressValue;
         bool boolValue;
     }
+    /**
+     * @dev structure that defines the parameters for specific issuance of bonds and amount which are to be transferred/issued/given allowance, etc.
+     * @notice this structure is used for the verification process, it chontains the metadata, logic and expectation
+     * @logic given here MUST be either ("and", "or")
+     */
     struct Requirement {
         Metadata metadata;
         string logic;
         Values expectation;
     }
 
-    /**
-     * @dev structure that defines the parameters for specific issuance of bonds and amount which are to be transferred/issued/given allowance, etc.
-     * @notice this structure is used for the verification process, it chontains the SBFID and logic
-     * @logic given here MUST be either ("and", "or")
-     */
-    struct Verification {
-        uint256 SBFID;
-        string logic;
-    }
-    
+
     function ifVerified(address verifying, uint256 SBFID) external view returns (bool);
-    function verifiy(address verifying, Verification[] memory proofNeeded) external view returns (bool);
     function standardRequirement(uint256 SBFID) external view returns (Requirement[] memory);
     function changeStandardRequirement(uint256 SBFID, Requirement[] memory requirements) external returns (bool);
     function certify(address certifying, uint256 SBFID) external returns (bool);
