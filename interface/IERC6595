@@ -45,19 +45,3 @@ interface IERC6595 {
     event revoked(address certifying, uint256 SBFID);
 
 }
-
-abstract contract ERC6595 is IERC6595 {
-    address private _authenticator;
-    Verification[] private _KYCRequirement;
-
-    constructor(address authenticatorAddress, Verification[] memory KYCStandards) {
-        _KYCRequirement = KYCStandards;
-        _authenticator = authenticatorAddress;
-    }
-
-    modifier KYCApproved(address verifying) {
-        IERC6595(_authenticator).verifiy(verifying, _KYCRequirement);
-        _;
-    }
-}
-
