@@ -28,7 +28,6 @@ interface IERC6595 {
         Values expectation;
     }
 
-
     function ifVerified(address verifying, uint256 SBFID) external view returns (bool);
     function standardRequirement(uint256 SBFID) external view returns (Requirement[] memory);
     function changeStandardRequirement(uint256 SBFID, Requirement[] memory requirements) external returns (bool);
