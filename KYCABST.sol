@@ -22,21 +22,21 @@ abstract contract KYCABST is IERC6595{
     }
 
     function changeStandardRequirement(uint256 SBFID, Requirement[] memory requirements) public override returns (bool){
-        require(msg.sender = admin);
+        require(msg.sender == admin);
         _requiredMetadata[SBFID] = requirements;    
         emit standardChanged(SBFID, requirements);
         return(true);     
     }
 
     function certify(address certifying, uint256 SBFID) public override returns (bool){
-        require(msg.sender = admin);
+        require(msg.sender == admin);
         _SBTVerified[certifying][SBFID] = true;
         emit certified(certifying, SBFID);
         return(true);     
     }
 
     function revoke(address certifying, uint256 SBFID) external override returns (bool){
-            require(msg.sender = admin);
+        require(msg.sender == admin);
         _SBTVerified[certifying][SBFID] = false;
         emit revoked(certifying, SBFID);
         return(true);     
