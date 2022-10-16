@@ -17,7 +17,6 @@ interface IERC6595 {
         address addressValue;
         bool boolValue;
     }
-
     struct Requirement {
         Metadata metadata;
         string logic;
@@ -44,5 +43,4 @@ interface IERC6595 {
     event standardChanged(uint256 SBFID, Requirement[]);   
     event certified(address certifying, uint256 SBFID);
     event revoked(address certifying, uint256 SBFID);
-
 }
