@@ -13,32 +13,32 @@ abstract contract KYCABST is IERC6595{
 
     }
     
-    function ifVerified(address verifying, uint256 SBFID) public override view returns (bool){
-        return(_SBTVerified[verifying][SBFID]);
+    function ifVerified(address verifying, uint256 SBTID) public override view returns (bool){
+        return(_SBTVerified[verifying][SBTID]);
     }
     
-    function standardRequirement(uint256 SBFID) public override view returns (Requirement[] memory){
-        return(_requiredMetadata[SBFID]);
+    function standardRequirement(uint256 SBTID) public override view returns (Requirement[] memory){
+        return(_requiredMetadata[SBTID]);
     }
 
-    function changeStandardRequirement(uint256 SBFID, Requirement[] memory requirements) public override returns (bool){
+    function changeStandardRequirement(uint256 SBTID, Requirement[] memory requirements) public override returns (bool){
         require(msg.sender == admin);
-        _requiredMetadata[SBFID] = requirements;    
-        emit standardChanged(SBFID, requirements);
+        _requiredMetadata[SBTID] = requirements;    
+        emit standardChanged(SBTID, requirements);
         return(true);     
     }
 
-    function certify(address certifying, uint256 SBFID) public override returns (bool){
+    function certify(address certifying, uint256 SBTID) public override returns (bool){
         require(msg.sender == admin);
-        _SBTVerified[certifying][SBFID] = true;
-        emit certified(certifying, SBFID);
+        _SBTVerified[certifying][SBTID] = true;
+        emit certified(certifying, SBTID);
         return(true);     
     }
 
-    function revoke(address certifying, uint256 SBFID) external override returns (bool){
+    function revoke(address certifying, uint256 SBTID) external override returns (bool){
         require(msg.sender == admin);
-        _SBTVerified[certifying][SBFID] = false;
-        emit revoked(certifying, SBFID);
+        _SBTVerified[certifying][SBTID] = false;
+        emit revoked(certifying, SBTID);
         return(true);     
     }
 
