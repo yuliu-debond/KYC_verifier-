@@ -12,7 +12,7 @@ abstract contract ERC6595 is IERC6595 {
     }
 
     modifier KYCApproved(address verifying) {
-        IERC6595(_authenticator).verifiy(verifying, _KYCRequirement);
+        IERC6595(_authenticator).verifiy(verifying, uint256 SBTID);
         _;
     }
 }
