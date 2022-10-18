@@ -20,7 +20,7 @@ interface IERC6595 {
     /**
      * @dev structure that defines the parameters for specific issuance of bonds and amount which are to be transferred/issued/given allowance, etc.
      * @notice this structure is used for the verification process, it chontains the metadata, logic and expectation
-     * @logic given here MUST be one of ("⊄", "⊂", "<", "<=", "=", "!=", ">=",">")
+     * @logic given here MUST be one of ("⊄", "⊂", "<", "<=", "==", "!=", ">=",">")
      */
     struct Requirement {
         Metadata metadata;
