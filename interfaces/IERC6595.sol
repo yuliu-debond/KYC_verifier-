@@ -28,13 +28,13 @@ interface IERC6595 {
         Values expectation;
     }
 
-    function ifVerified(address verifying, uint256 SBFID) external view returns (bool);
-    function standardRequirement(uint256 SBFID) external view returns (Requirement[] memory);
-    function changeStandardRequirement(uint256 SBFID, Requirement[] memory requirements) external returns (bool);
-    function certify(address certifying, uint256 SBFID) external returns (bool);
-    function revoke(address certifying, uint256 SBFID) external returns (bool);
+    function ifVerified(address verifying, uint256 SBTID) external view returns (bool);
+    function standardRequirement(uint256 SBTID) external view returns (Requirement[] memory);
+    function changeStandardRequirement(uint256 SBTID, Requirement[] memory requirements) external returns (bool);
+    function certify(address certifying, uint256 SBTID) external returns (bool);
+    function revoke(address certifying, uint256 SBTID) external returns (bool);
 
-    event standardChanged(uint256 SBFID, Requirement[]);   
-    event certified(address certifying, uint256 SBFID);
-    event revoked(address certifying, uint256 SBFID);
+    event standardChanged(uint256 SBTID, Requirement[]);   
+    event certified(address certifying, uint256 SBTID);
+    event revoked(address certifying, uint256 SBTID);
 }
