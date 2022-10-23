@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 import "./interfaces/IERC6595.sol";
 import "./verification_modifier.sol";
 
-abstract contract Token is ERC6595 {
+abstract contract Token is verification_modifier {
     uint public test;
     function mint(address to, uint256 amount) public KYCApproved(to){
         _mint(to, amount);
