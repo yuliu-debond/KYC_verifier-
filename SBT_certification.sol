@@ -3,6 +3,7 @@
 pragma solidity ^0.8.0;
 import "./interfaces/IERC6595.sol";
 
+
 abstract contract KYCABST is IERC6595{
     mapping(uint256 => IERC6595.Requirement[]) private _requiredMetadata;
     mapping(address => mapping(uint256 => bool)) private _SBTVerified;
