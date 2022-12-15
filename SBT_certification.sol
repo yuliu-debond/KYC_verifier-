@@ -4,8 +4,8 @@ pragma solidity ^0.8.0;
 import "./interfaces/IERC6595.sol";
 
 
-abstract contract KYCABST is IERC6595{
-    mapping(uint256 => IERC6595.Requirement[]) private _requiredMetadata;
+abstract contract Issuer is IERC6595{
+    mapping(uint256 => IERC6595.Claim[]) private _requiredClaim;
     mapping(address => mapping(uint256 => bool)) private _SBTVerified;
     address public admin;
     
@@ -14,32 +14,32 @@ abstract contract KYCABST is IERC6595{
 
     }
     
-    function ifVerified(address verifying, uint256 SBTID) public override view returns (bool){
-        return(_SBTVerified[verifying][SBTID]);
+    function ifVerified(address claimmer, uint256 SBTID) public override view returns (bool){
+        return(_SBTVerified[claimmer][SBTID]);
     }
     
-    function standardRequirement(uint256 SBTID) public override view returns (Requirement[] memory){
-        return(_requiredMetadata[SBTID]);
+    function standardclaim(uint256 SBTID) public override view returns (Claim[] memory){
+        return(_requiredClaim[SBTID]);
     }
 
-    function changeStandardRequirement(uint256 SBTID, Requirement[] memory requirements) public override returns (bool){
+    function changeStandardClaim(uint256 SBTID, Claim[] memory _claims) public override returns (bool){
         require(msg.sender == admin);
         _requiredMetadata[SBTID] = requirements;    
         emit standardChanged(SBTID, requirements);
         return(true);     
     }
 
-    function certify(address certifying, uint256 SBTID) public override returns (bool){
+    function certify(address claimer, uint256 SBTID) public override returns (bool){
         require(msg.sender == admin);
-        _SBTVerified[certifying][SBTID] = true;
-        emit certified(certifying, SBTID);
+        _SBTVerified[claimer][SBTID] = true;
+        emit certified(claimer, SBTID);
         return(true);     
     }
 
-    function revoke(address certifying, uint256 SBTID) external override returns (bool){
+    function revoke(address claimer, uint256 SBTID) external override returns (bool){
         require(msg.sender == admin);
-        _SBTVerified[certifying][SBTID] = false;
-        emit revoked(certifying, SBTID);
+        _SBTVerified[claimer][SBTID] = false;
+        emit revoked(claimer, SBTID);
         return(true);     
     }
 
